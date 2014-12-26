@@ -1,0 +1,8 @@
+The solver 'eiquadprog.hpp' was taken here:
+    http://www.cs.cmu.edu/~bstephe1/
+
+It works on some of problems and fails on others. It seems that the solver has
+a bug in handling of degenerate problems, see my comment near line 439. I don't
+have time to debug it properly.
+
+The usage is documented in 'eiquadprog.m'.
