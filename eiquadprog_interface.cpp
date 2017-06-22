@@ -1,5 +1,3 @@
-//DD// Matlab interface for QLD using only bounds 2010/05/07
-
 #include <iostream>
 #include <fstream>
 #include <math.h>
@@ -29,7 +27,7 @@ void mexFunction( int num_output, mxArray *output[], int num_input, const mxArra
     const mxArray *Ain = input[4];
     const mxArray *bin = input[5];
 
-    
+
     mxArray *x = NULL;
 
 
@@ -44,7 +42,7 @@ void mexFunction( int num_output, mxArray *output[], int num_input, const mxArra
     MatrixXd eA     = Map<MatrixXd>  ((double*) mxGetPr(A),   num_eq, num_var);
     VectorXd eb     = Map<VectorXd>  ((double*) mxGetPr(b),   num_eq);
     MatrixXd eAin   = Map<MatrixXd>  ((double*) mxGetPr(Ain), num_ineq, num_var);
-    VectorXd ebin   = Map<VectorXd>  ((double*) mxGetPr(bin), num_ineq); 
+    VectorXd ebin   = Map<VectorXd>  ((double*) mxGetPr(bin), num_ineq);
     VectorXd ex     = Map<VectorXd>  ((double*) mxGetPr(x),   num_var);
 
 
@@ -87,11 +85,11 @@ void mexFunction( int num_output, mxArray *output[], int num_input, const mxArra
 
     mxArray *info_status = mxCreateNumericMatrix(1, 1, mxINT32_CLASS, mxREAL);
     ((INT32_T *) mxGetData (info_status))[0] = static_cast <int> (eiqp_status);
-    mxSetField (output[1], 0, "status", info_status); 
+    mxSetField (output[1], 0, "status", info_status);
 
     mxArray *info_obj = mxCreateNumericMatrix(1, 1, mxDOUBLE_CLASS, mxREAL);
     ((double *) mxGetData (info_obj))[0] = qp_status;
-    mxSetField (output[1], 0, "obj", info_obj); 
+    mxSetField (output[1], 0, "obj", info_obj);
 
     return;
 }
