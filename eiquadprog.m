@@ -24,7 +24,7 @@
 %   to the diagonal elements of H to avoid failures on semidefinite problems,
 %   by default regularization factor is equal to 1e-12.
 %
-% Output: 
+% Output:
 %
 %   x -- the solution
 %
@@ -40,7 +40,7 @@ function [x, info] = eiquadprog(varargin)
     H = [];
     g = [];
     A = [];
-    b = []; 
+    b = [];
     lb = [];
     ub = [];
     Ain = [];
@@ -113,7 +113,7 @@ function [x, info] = eiquadprog(varargin)
         error('Hessian is not initialized.');
     end
 
-    if (~issquare(H))
+    if (size(H,1) ~= size(H,2))
         error('Hessian is not square.');
     end
 
@@ -131,17 +131,17 @@ function [x, info] = eiquadprog(varargin)
 
     % bounds
     if (~isempty(lb))
-        if ((size(lb, 1) != num_var) || (size(lb, 2) != 1))
+        if ((size(lb, 1) ~= num_var) || (size(lb, 2) ~= 1))
             error('Incorrect size of the vector of lower bounds.');
         end
     end
 
     if (~isempty(ub))
-        if ((size(ub, 1) != num_var) || (size(ub, 2) != 1))
+        if ((size(ub, 1) ~= num_var) || (size(ub, 2) ~= 1))
             error('Incorrect size of the vector of upper bounds.');
         end
     end
-    
+
 
     % equality constraints
     if ( (isempty(A) && ~isempty(b)) || (~isempty(A) && isempty(b)))
